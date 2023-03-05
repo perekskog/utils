@@ -1,3 +1,4 @@
+const { Command } = require("commander");
 const cheerio = require("cheerio");
 const axios = require("axios");
 
@@ -35,4 +36,15 @@ const poesiskolan = async () => {
     });
 };
 
-poesiskolan();
+const program = new Command();
+program.parse(process.argv);
+
+usecase = program.args[1];
+
+switch (usecase) {
+  case "poesiskolan":
+    poesiskolan();
+    break;
+  default:
+    console.log("Unknown usecase");
+}
